@@ -22,7 +22,7 @@ class Seo
 
         $this->optimizer = new Optimizer();
         $this->optimizer->openGraph(
-            'Hotel São Charbel' ?? 'Informática Livre',
+            'Pousada Cavalo Marinho' ?? 'Informática Livre',
             'pt_BR',
             'article'
         )->publisher(
