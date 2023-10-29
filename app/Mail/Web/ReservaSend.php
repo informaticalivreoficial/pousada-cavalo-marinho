@@ -33,7 +33,7 @@ class ReservaSend extends Mailable
     {
         return $this->replyTo($this->data['reply_email'], $this->data['reply_name'])
             ->to($this->data['siteemail'], $this->data['sitename'])
-            //->cc('reservas@hotelsaocharbel.com.br')
+            ->bcc('atendimento@ubatubatimes.com.br')
             ->from($this->data['siteemail'], $this->data['sitename'])
             ->subject('✔️ Pré-reserva: ' . $this->data['reply_name'])
             ->markdown('emails.reserva', [
