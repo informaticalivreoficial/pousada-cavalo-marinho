@@ -8,7 +8,6 @@ use App\Services\ConfigService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-use Spatie\Sitemap\SitemapGenerator;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Sitemap\Sitemap;
@@ -53,10 +52,12 @@ class SitemapController extends Controller
             endforeach; 
         }
 
+        $sitemap->add('/atendimento');
         $sitemap->add('/acomodacoes');
         $sitemap->add('/reservar');
         $sitemap->add('/politica-de-privacidade');
         $sitemap->add('/galerias');
+        $sitemap->add('/blog');
         $sitemap->writeToDisk('s3', Str::slug($configupdate->nomedosite) . '_sitemap.xml');        
         
         return response()->json(['success' => true]);
