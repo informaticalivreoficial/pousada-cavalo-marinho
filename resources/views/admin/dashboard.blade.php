@@ -273,7 +273,7 @@
                 @endphp
                 <tr>
                     <td>
-                        <a href="{{url($paginatop->nocover())}}" data-title="{{$paginatop->titulo}}" data-toggle="lightbox"> 
+                        <a href="{{url($paginatop->cover())}}" data-title="{{$paginatop->titulo}}" data-toggle="lightbox"> 
                             <img src="{{url($paginatop->cover())}}" alt="{{$paginatop->titulo}}" class="img-size-50">
                         </a>
                     </td>
