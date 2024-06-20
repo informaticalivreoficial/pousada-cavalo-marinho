@@ -221,7 +221,7 @@
                 @endphp
                 <tr>
                     <td>
-                        <a href="{{url($artigotop->nocover())}}" data-title="{{$artigotop->titulo}}" data-toggle="lightbox"> 
+                        <a href="{{url($artigotop->cover())}}" data-title="{{$artigotop->titulo}}" data-toggle="lightbox"> 
                             <img src="{{url($artigotop->cover())}}" alt="{{$artigotop->titulo}}" class="img-size-50">
                         </a>
                     </td>
