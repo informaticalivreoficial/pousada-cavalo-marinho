@@ -39,10 +39,12 @@
                     <div class="row nav-row">
                         <div class="slider-nav">
                             @if($acomodacao->images()->get()->count())
-                                @foreach($acomodacao->images()->get() as $image)
-                                    <div class="nav-image">
-                                        <img width="201" height="151" src="{{ $image->url_image }}" alt="{{$acomodacao->titulo}}"/>
-                                    </div>
+                                @foreach($acomodacao->images()->get() as $key => $image)
+                                    @if ($key > 1)
+                                        <div class="nav-image">
+                                            <img width="201" height="151" src="{{ $image->url_image }}" alt="{{$acomodacao->titulo}}"/>
+                                        </div>
+                                    @endif                                    
                                 @endforeach
                             @endif
                         </div>
