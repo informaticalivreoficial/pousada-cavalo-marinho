@@ -66,7 +66,7 @@ class WebController extends Controller
             'apartamentos' => $apartamentos,
             'artigos' => $artigos,
             'acomodacoes' => $acomodacoes,
-            'galerias' => $galerias,
+            //'galerias' => $galerias,
             'imagens' => $imagens,
             'pagina' => $pagina
 		]);

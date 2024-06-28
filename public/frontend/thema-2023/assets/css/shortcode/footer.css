@@ -9,9 +9,19 @@ NOTE: This is Footer style file. All footer related style included in this file.
 
 --------------------------------------*/
 .footer-area {color: #f7f7f7}
-.footer-widget-area {padding: 130px 0 61px;}
+.footer-widget-area {padding: 60px 0 61px;}
 .footer-logo > a {display: inline-block;}
 .footer-logo {margin-bottom: 29px;}
+@media (min-width: 992px) {
+    .home-sosial {
+        margin-bottom: 40px;
+    }
+}
+@media (min-width: 768px) {
+    .home-sosial {
+        margin-bottom: 40px;
+    }
+}
 .social-icons a {
     border: 1px solid #b1b1b1;
     color: #b1b1b1;

@@ -96,8 +96,6 @@
 								@endif
 
 								
-								<li><a href="{{route('web.blog.artigos')}}">Blog</a></li>                           
-								<li><a href="{{route('web.atendimento')}}">Atendimento</a></li>
 								<li><a href="{{route('web.reservar')}}">>> Pré-Reserva <<</a></li>
 							</ul>
 						</nav>
@@ -146,7 +144,7 @@
 		<div class="footer-widget-area bg-dark">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
 						<div class="single-footer-widget" style="width: 90%;">
 							<div class="footer-logo">
 								<a href="{{route('web.home')}}">
@@ -154,7 +152,7 @@
 								</a>
 							</div>
 							{!!$configuracoes->descricao!!}
-							<div class="social-icons">
+							<div class="social-icons home-sosial">
 								@if ($configuracoes->facebook)
 									<a target="_blank" href="{{$configuracoes->facebook}}" title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
 								@endif
@@ -173,8 +171,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="single-footer-widget">
+					<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+						<div class="single-footer-widget" style="float: left">
 							<h3>links</h3>
 							<ul class="footer-list">
 								<li><a href="{{route('web.home')}}" title="Início">Início</a></li>
@@ -185,24 +183,32 @@
 								<li><a href="{{route('web.atendimento')}}" title="Fale Conosco">Fale Conosco</a></li>
 								<li><a href="{{route('web.politica')}}" title="Política de Privacidade">Política de Privacidade</a></li>
 							</ul>
-							<h3 style="margin-top: 30px !important;">Atendimento</h3>
+														
+						</div>
+					</div>					
+	
+					<div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+						<div class="single-footer-widget">
+							<h3>Atendimento</h3>
 							<div class="c-info">
 								@if($configuracoes->rua)
-									<li>
-										<i class="icon fal fa-map-marker-check"></i>
-										<span><i class="zmdi zmdi-pin"></i>
-											{{$configuracoes->rua}}
-											@if($configuracoes->num)
-												, {{$configuracoes->num}}
-											@endif	
-											@if($configuracoes->bairro)
-												<br>{{$configuracoes->bairro}}
-											@endif
-											@if($configuracoes->cidade)  
-												- {{$configuracoes->cidade}}
-											@endif
-										</span>
-									</li>
+									<ul>
+										<li>
+											<i class="icon fal fa-map-marker-check"></i>
+											<span><i class="zmdi zmdi-pin mr-2"></i>
+												{{$configuracoes->rua}}
+												@if($configuracoes->num)
+													, {{$configuracoes->num}}
+												@endif	
+												@if($configuracoes->bairro)
+													{{$configuracoes->bairro}}
+												@endif
+												@if($configuracoes->cidade)  
+													- {{$configuracoes->cidade}}
+												@endif
+											</span>
+										</li>
+									</ul>
 								@endif								
 							</div>
 							<div class="c-info"> 
@@ -246,12 +252,12 @@
 									<i class="zmdi zmdi-whatsapp" style="margin-right:10px;color: #FF6600;"></i>
 									<a class="sharezap" href="#" target="_blank">{{$configuracoes->whatsapp}}</a>
 								@endif
-							</div>							
-						</div>
-					</div>					
-	
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="single-footer-widget">
+							</div>
+
+
+
+
+							{{--	
 							<h3>Fotos</h3>
 							@if (!empty($gbGallery) && $gbGallery->count() > 0)
 								<div class="instagram-image">
@@ -269,8 +275,10 @@
 										@endif
 									@endforeach	
 								</div>							
-							@endif							                  
-						</div>
+							@endif	--}}
+
+						</div>    
+
 					</div>
 				</div>
 			</div>

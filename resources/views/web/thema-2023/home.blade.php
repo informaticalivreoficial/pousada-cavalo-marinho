@@ -142,7 +142,7 @@
             </div>
         </section>
     @endif
-
+        {{--
     @if (!empty($galerias) && $galerias->count() > 0)
         <section class="gallery-area pt-90">
             <div class="container">
@@ -190,7 +190,7 @@
             </div>
         </section>
     @endif
-
+--}}
     @if (!empty($artigos) && $artigos->count() > 0)
         <section class="blog-area" style="margin-top: 60px;margin-bottom: 40px;">
             <div class="container">
