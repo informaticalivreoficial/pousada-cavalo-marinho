@@ -27,26 +27,26 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        URL::forceScheme('https');
-        Schema::defaultStringLength(191);
-        Blade::aliasComponent('admin.components.message', 'message');
+        // URL::forceScheme('https');
+        // Schema::defaultStringLength(191);
+        // Blade::aliasComponent('admin.components.message', 'message');
 
-        //Newsletter FORM
-        $newsletter = \App\Models\NewsletterCat::where('sistema', 1)->where('status', 1)->get();
-        View()->share('newsletterForm', $newsletter);
+        // //Newsletter FORM
+        // $newsletter = \App\Models\NewsletterCat::where('sistema', 1)->where('status', 1)->get();
+        // View()->share('newsletterForm', $newsletter);
 
-        //Links
-        $Links = \App\Models\Menu::whereNull('id_pai')->orderby('created_at', 'DESC')
-                        ->available()
-                        ->get();        
-        View()->share('Links', $Links);
+        // //Links
+        // $Links = \App\Models\Menu::whereNull('id_pai')->orderby('created_at', 'DESC')
+        //                 ->available()
+        //                 ->get();        
+        // View()->share('Links', $Links);
 
-        $configuracoes = \App\Models\Configuracoes::find(1); 
-        View()->share('configuracoes', $configuracoes);
+        // $configuracoes = \App\Models\Configuracoes::find(1); 
+        // View()->share('configuracoes', $configuracoes);
 
-        $gbGallery = \App\Models\Galeria::available()->inRandomOrder()->limit(3)->get(); 
-        View()->share('gbGallery', $gbGallery);
+        // $gbGallery = \App\Models\Galeria::available()->inRandomOrder()->limit(3)->get(); 
+        // View()->share('gbGallery', $gbGallery);
         
-        Paginator::useBootstrap();
+        // Paginator::useBootstrap();
     }
 }
