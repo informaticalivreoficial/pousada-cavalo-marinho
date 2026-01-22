@@ -310,8 +310,8 @@ class SendEmailController extends Controller
             ], 422);
         }
 
-        //Mail::send(new ReservaSend($data));
-        //Mail::send(new ReservaRetorno($retorno));  
+        Mail::send(new ReservaSend($data));
+        Mail::send(new ReservaRetorno($retorno));  
         
         return response()->json([
             'sucess' => 'Pré-reserva enviada com sucesso!'
