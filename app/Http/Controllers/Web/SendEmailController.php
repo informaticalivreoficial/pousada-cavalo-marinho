@@ -205,7 +205,7 @@ class SendEmailController extends Controller
             'adultos' => $request->num_adultos,
             'criancas' => $request->num_cri_0_5,            
             'codigo' => '00'.rand(1,100000),
-            'apartamento' => $apartamento->titulo
+            'apartamento' => $apartamento->titulo,
         ];
         
         $retorno = [
@@ -293,6 +293,7 @@ class SendEmailController extends Controller
 
             // texto livre vindo do site
             'apartamento' => $apartamento->titulo,
+            'information' => $request->empresa_nome . ' - ' . $request->telefone_empresa . ' - ' . $request->cnpj,
         ];
 
         $response = Http::withHeaders([
