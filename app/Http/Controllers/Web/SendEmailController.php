@@ -313,7 +313,7 @@ class SendEmailController extends Controller
         //Mail::send(new ReservaRetorno($retorno));  
         
         return response()->json([
-            'success' => 'Pré-reserva enviada com sucesso!'
+            'sucess' => 'Pré-reserva enviada com sucesso!'
         ]);
         
         // $json = "Obrigado {$request->nome} sua solicitação de pré-reserva foi enviada com sucesso!"; 
