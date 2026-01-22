@@ -286,8 +286,8 @@ class SendEmailController extends Controller
             'city'          => $request->cidade,
             'estate'        => $request->uf,
 
-            'checkin'      => Carbon::createFromFormat('d/m/Y', $request->checkin)->format('d/m/Y'),
-            'checkout'     => Carbon::createFromFormat('d/m/Y', $request->checkout)->format('d/m/Y'),
+            'checkin'      => $request->checkin,
+            'checkout'     => $request->checkout,
             'adultos'      => $request->num_adultos,
             'criancas'     => $request->num_cri_0_5,
 
