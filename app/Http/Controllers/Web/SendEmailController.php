@@ -19,6 +19,7 @@ use App\Models\Reservas;
 use App\Models\User;
 use App\Services\ConfigService;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 
 class SendEmailController extends Controller
@@ -214,68 +215,106 @@ class SendEmailController extends Controller
             'reply_email' => $request->email
         ];
         
-        $getEmpresa = Empresa::where('document_company', str_replace(['.', '-', '/', '(', ')', ' '], '', $request->cnpj))->first();
-        if($request->tipo_reserva == 2){                        
-            if(empty($getEmpresa)){
-                $empresa = [
-                    'alias_name' => $request->empresa_nome,
-                    'social_name' => $request->empresa_nome,
-                    'document_company' => $request->cnpj,
-                    'telefone' => $request->telefone_empresa
-                ];
-                $empresaCreate = Empresa::create($empresa);
-                $empresaCreate->save();
-            }            
-        }
+        // $getEmpresa = Empresa::where('document_company', str_replace(['.', '-', '/', '(', ')', ' '], '', $request->cnpj))->first();
+        // if($request->tipo_reserva == 2){                        
+        //     if(empty($getEmpresa)){
+        //         $empresa = [
+        //             'alias_name' => $request->empresa_nome,
+        //             'social_name' => $request->empresa_nome,
+        //             'document_company' => $request->cnpj,
+        //             'telefone' => $request->telefone_empresa
+        //         ];
+        //         $empresaCreate = Empresa::create($empresa);
+        //         $empresaCreate->save();
+        //     }            
+        // }
         
-        $user = [
+        // $user = [
+        //     'name' => $request->cliente_nome,
+        //     'email' => $request->email,
+        //     'cpf' => $request->cpf,
+        //     'rg' => $request->rg,
+        //     'whatsapp' => $request->whatsapp,
+        //     'cep' => $request->cep,
+        //     'rua' => $request->rua,
+        //     'bairro' => $request->bairro,
+        //     'num' => $request->num,
+        //     'uf' => $request->uf,
+        //     'cidade' => $request->cidade,
+        //     'email_verified_at' => Carbon::now(),
+        //     'password' => bcrypt(Carbon::now()),
+        //     'senha' => Str::random(20),
+        //     'remember_token' => Str::random(20),
+        //     'client' => true,
+        //     'status' => 1,
+        //     'notasadicionais' => 'Cliente cadastrado pelo site'
+        // ];        
+        
+        // $getUser = User::where('email', $request->email)->first();
+        // if(!$getUser){
+        //     $userCreate = User::create($user);
+        //     $userCreate->save();
+        // }        
+        
+        // $reserva = [
+        //     'cliente' => $request->cliente_nome,
+        //     'apartamento' => $apartamento->id,
+        //     'empresa' => ($request->tipo_reserva == 2 && $request->empresa_nome != '' ? $request->empresa_nome : null),
+        //     'status' => 1,
+        //     'adultos' => $request->num_adultos,
+        //     'criancas_0_5' => $request->num_cri_0_5,
+        //     'codigo' => $data['codigo'],
+        //     'checkin' => Carbon::createFromFormat('d/m/Y', $request->checkin)->format('d/m/Y'),
+        //     'checkout' => Carbon::createFromFormat('d/m/Y', $request->checkout)->format('d/m/Y'),
+        //     //'notasadicionais' => $data['ocupacao']
+        // ];
+        
+        // $reservaCreate = Reservas::create($reserva);
+        // $reservaCreate->save();
+        $payload = [
             'name' => $request->cliente_nome,
-            'email' => $request->email,
-            'cpf' => $request->cpf,
-            'rg' => $request->rg,
-            'whatsapp' => $request->whatsapp,
-            'cep' => $request->cep,
-            'rua' => $request->rua,
-            'bairro' => $request->bairro,
-            'num' => $request->num,
-            'uf' => $request->uf,
-            'cidade' => $request->cidade,
-            'email_verified_at' => Carbon::now(),
-            'password' => bcrypt(Carbon::now()),
-            'senha' => Str::random(20),
-            'remember_token' => Str::random(20),
-            'client' => true,
-            'status' => 1,
-            'notasadicionais' => 'Cliente cadastrado pelo site'
-        ];        
-        
-        $getUser = User::where('email', $request->email)->first();
-        if(!$getUser){
-            $userCreate = User::create($user);
-            $userCreate->save();
-        }        
-        
-        $reserva = [
-            'cliente' => (!$getUser ? $userCreate->id : $getUser->id),
-            'apartamento' => $apartamento->id,
-            'empresa' => ($request->tipo_reserva == 2 && !empty($getEmpresa) ? $empresaCreate->id : null),
-            'status' => 1,
-            'adultos' => $request->num_adultos,
-            'criancas_0_5' => $request->num_cri_0_5,
-            'codigo' => $data['codigo'],
-            'checkin' => Carbon::createFromFormat('d/m/Y', $request->checkin)->format('d/m/Y'),
-            'checkout' => Carbon::createFromFormat('d/m/Y', $request->checkout)->format('d/m/Y'),
-            //'notasadicionais' => $data['ocupacao']
-        ];
-        
-        $reservaCreate = Reservas::create($reserva);
-        $reservaCreate->save();
+            'email'        => $request->email,
+            'cpf'          => $request->cpf,
+            'rg'           => $request->rg,
+            'nasc'         => $request->nasc,
+            'whatsapp'     => $request->whatsapp,
 
-        Mail::send(new ReservaSend($data));
-        Mail::send(new ReservaRetorno($retorno));   
+            'zipcode'       => $request->cep,
+            'street'        => $request->rua,
+            'neighborhood'  => $request->bairro,
+            'number'        => $request->num,
+            'city'          => $request->cidade,
+            'estate'        => $request->uf,
+
+            'checkin'      => $request->checkin,
+            'checkout'     => $request->checkout,
+            'adultos'      => $request->num_adultos,
+            'criancas'     => $request->num_cri_0_5,
+
+            // texto livre vindo do site
+            'apartamento' => $apartamento->titulo,
+        ];
+
+        $response = Http::withHeaders([
+            'Accept'     => 'application/json',
+            'X-API-KEY'  => config('services.reservas.key'),
+        ])->post(
+            config('services.reservas.url') . '/api/reservations',
+            $payload
+        );
+
+        if ($response->failed()) {
+            return response()->json([
+                'error' => $response->json('message') ?? 'Erro ao processar reserva'
+            ], 422);
+        }
+
+        //Mail::send(new ReservaSend($data));
+        //Mail::send(new ReservaRetorno($retorno));  
         
-        $json = "Obrigado {$request->nome} sua solicitação de pré-reserva foi enviada com sucesso!"; 
-        return response()->json(['sucess' => $json]);
+        return response()->json([
+            'success' => 'Pré-reserva enviada com sucesso!'
+        ]);
     }   
     
     public function avaliacaoSend(Request $request)

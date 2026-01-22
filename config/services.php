@@ -14,6 +14,11 @@ return [
     |
     */
 
+    'reservas' => [
+        'url' => env('RESERVAS_API_URL'),
+        'key' => env('RESERVAS_API_KEY'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
