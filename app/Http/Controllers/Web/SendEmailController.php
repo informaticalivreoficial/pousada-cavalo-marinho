@@ -286,8 +286,8 @@ class SendEmailController extends Controller
             'city'          => $request->cidade,
             'estate'        => $request->uf,
 
-            'checkin'      => $request->checkin,
-            'checkout'     => $request->checkout,
+            'checkin'      => Carbon::createFromFormat('d/m/Y', $request->checkin)->format('d/m/Y'),
+            'checkout'     => Carbon::createFromFormat('d/m/Y', $request->checkout)->format('d/m/Y'),
             'adultos'      => $request->num_adultos,
             'criancas'     => $request->num_cri_0_5,
 
@@ -315,6 +315,9 @@ class SendEmailController extends Controller
         return response()->json([
             'success' => 'Pré-reserva enviada com sucesso!'
         ]);
+        
+        // $json = "Obrigado {$request->nome} sua solicitação de pré-reserva foi enviada com sucesso!"; 
+        // return response()->json(['sucess' => $json]);
     }   
     
     public function avaliacaoSend(Request $request)
